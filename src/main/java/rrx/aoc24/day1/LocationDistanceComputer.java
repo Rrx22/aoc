@@ -19,7 +19,7 @@ public class LocationDistanceComputer {
 
     static LocationQs readToLocationQs() throws URISyntaxException {
         LocationQs lq = new LocationQs(new PriorityQueue<>(), new PriorityQueue<>());
-        var resourcePath = Paths.get(ClassLoader.getSystemResource("24/d1p1").toURI());
+        var resourcePath = Paths.get(ClassLoader.getSystemResource("24/d01p1").toURI());
 
         try (var br = Files.newBufferedReader(resourcePath)) {
             String line;

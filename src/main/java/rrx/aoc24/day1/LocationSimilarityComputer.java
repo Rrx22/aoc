@@ -18,7 +18,7 @@ public class LocationSimilarityComputer {
 
     static LocationMaps readToLocationMaps() throws URISyntaxException {
         LocationMaps lm = new LocationMaps(new HashMap<>(), new HashMap<>());
-        var resourcePath = Paths.get(ClassLoader.getSystemResource("24/d1p1").toURI());
+        var resourcePath = Paths.get(ClassLoader.getSystemResource("24/d01p1").toURI());
 
         try (var br = Files.newBufferedReader(resourcePath)) {
             String line;
