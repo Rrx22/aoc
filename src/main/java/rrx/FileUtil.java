@@ -29,7 +29,7 @@ public class FileUtil {
         return grid;
     }
 
-    public static int[][] toIntArray(String fileName, String divider) {
+    public static int[][] readToIntArr(String fileName, String divider) {
         var list = readFile(fileName);
         int[][] grid = new int[list.size()][];
         for (int i = 0; i < list.size(); i++) {
