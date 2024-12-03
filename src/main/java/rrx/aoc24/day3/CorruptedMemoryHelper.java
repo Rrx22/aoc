@@ -7,22 +7,17 @@ import java.util.regex.Pattern;
 class CorruptedMemoryHelper {
 
     private boolean isInstructionsEnabled;
-    private static final Pattern regex = Pattern.compile("mul\\(\\d{1,3},\\d{1,3}\\)|do\\(\\)|don't\\(\\)");
     private boolean doMul = true;
+    private static final Pattern regex = Pattern.compile("mul\\(\\d{1,3},\\d{1,3}\\)|do\\(\\)|don't\\(\\)");
 
     long scan(List<String> file) {
-
-        long sum = 0L;
-
-        for (String line : file) {
-            sum = processUncorruptedMulInstructions(line, sum);
-        }
-
-        return sum;
-
+        return file.stream()
+                .mapToLong(this::processUncorruptedMulInstructions)
+                .sum();
     }
 
-    private long processUncorruptedMulInstructions(String line, long sum) {
+    private long processUncorruptedMulInstructions(String line) {
+        long sum = 0L;
         Matcher matcher = regex.matcher(line);
         while (matcher.find()) {
             String match = matcher.group();
@@ -37,7 +32,7 @@ class CorruptedMemoryHelper {
                         .substring(4)
                         .replace(")", "")
                         .split(",");
-                sum += Integer.parseInt(nums[0]) * Integer.parseInt(nums[1]);
+                sum += Long.parseLong(nums[0]) * Long.parseLong(nums[1]);
             }
         }
 
