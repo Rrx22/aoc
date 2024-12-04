@@ -3,7 +3,7 @@ package rrx.aoc24.day2;
 import rrx.ChristmasAssert;
 import rrx.utils.FileUtil;
 
-public class UnusualData {
+class UnusualData {
 
     public static void main(String[] args) {
         var unusualReports = FileUtil.readToIntArr("24/d02p1", " ");

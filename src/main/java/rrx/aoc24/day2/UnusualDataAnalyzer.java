@@ -1,6 +1,6 @@
 package rrx.aoc24.day2;
 
-public class UnusualDataAnalyzer {
+class UnusualDataAnalyzer {
 
     private boolean isProblemDampenerEnabled;
 

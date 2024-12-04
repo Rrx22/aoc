@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class LocationDistanceComputer {
+class LocationDistanceComputer {
 
     public static void main(String[] args) throws URISyntaxException {
         var locationQs = readToLocationQs();
