@@ -5,16 +5,19 @@ import rrx.utils.Direction;
 public class LiteralXmasFinder implements XmasFinder {
 
     private final char[][] grid;
-    private final char[][] resultGrid;
 
-    LiteralXmasFinder(char[][] grid, char[][] resultGrid) {
+    LiteralXmasFinder(char[][] grid) {
         this.grid = grid;
-        this.resultGrid = resultGrid;
     }
 
     @Override
-    public boolean skip(char c) {
-        return c != 'X';
+    public int edgeSkipper() {
+        return 0;
+    }
+
+    @Override
+    public boolean notInteresting(int i, int j) {
+        return grid[i][j] != 'X';
     }
 
     @Override
@@ -37,17 +40,9 @@ public class LiteralXmasFinder implements XmasFinder {
         return count;
     }
 
-
     private boolean check(Direction d, int i, int j) {
-        boolean found = grid[i + d.y][j + d.x] == 'M'
+        return grid[i + d.y][j + d.x] == 'M'
                 && grid[i + d.y * 2][j + d.x * 2] == 'A'
                 && grid[i + d.y * 3][j + d.x * 3] == 'S';
-        if (found) {
-            resultGrid[i][j] = 'X';
-            resultGrid[i + d.y][j + d.x] = 'M';
-            resultGrid[i + d.y * 2][j + d.x * 2] = 'A';
-            resultGrid[i + d.y * 3][j + d.x * 3] = 'S';
-        }
-        return found;
     }
 }
