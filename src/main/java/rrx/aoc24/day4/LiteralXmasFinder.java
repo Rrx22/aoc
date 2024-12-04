@@ -29,20 +29,19 @@ public class LiteralXmasFinder implements XmasFinder {
         boolean checkUp = i - 3 >= 0;
         boolean checkDown = i + 3 < grid.length;
 
-        if (checkRight && check(Direction.RIGHT, i, j)) count++;
-        if (checkLeft && check(Direction.LEFT, i, j)) count++;
-        if (checkUp && check(Direction.UP, i, j)) count++;
-        if (checkDown && check(Direction.DOWN, i, j)) count++;
-        if (checkUp && checkLeft && check(Direction.UP_LEFT, i, j)) count++;
-        if (checkUp && checkRight && check(Direction.UP_RIGHT, i, j)) count++;
-        if (checkDown && checkLeft && check(Direction.DOWN_LEFT, i, j)) count++;
-        if (checkDown && checkRight && check(Direction.DOWN_RIGHT, i, j)) count++;
+        count += check(Direction.RIGHT, i, j, checkRight);
+        count += check(Direction.LEFT, i, j, checkLeft);
+        count += check(Direction.UP, i, j, checkUp);
+        count += check(Direction.DOWN, i, j, checkDown);
+        count += check(Direction.UP_LEFT, i, j, checkUp && checkLeft);
+        count += check(Direction.UP_RIGHT, i, j, checkUp && checkRight);
+        count += check(Direction.DOWN_LEFT, i, j, checkDown && checkLeft);
+        count += check(Direction.DOWN_RIGHT, i, j, checkDown && checkRight);
         return count;
     }
 
-    private boolean check(Direction d, int i, int j) {
-        return grid[i + d.y][j + d.x] == 'M'
-                && grid[i + d.y * 2][j + d.x * 2] == 'A'
-                && grid[i + d.y * 3][j + d.x * 3] == 'S';
+    private long check(Direction d, int i, int j, boolean condition) {
+        return condition && grid[i + d.y][j + d.x] == 'M' && grid[i + d.y * 2][j + d.x * 2] == 'A' && grid[i + d.y * 3][j + d.x * 3] == 'S'
+                ? 1L : 0L;
     }
 }
