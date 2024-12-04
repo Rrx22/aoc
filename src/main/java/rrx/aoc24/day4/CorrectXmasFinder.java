@@ -23,19 +23,17 @@ public class CorrectXmasFinder implements XmasFinder {
     @Override
     public long findXmas(int i, int j) {
         try {
-            new Pair(grid[i - 1][j - 1], grid[i + 1][j + 1]).validate();
-            new Pair(grid[i + 1][j - 1], grid[i - 1][j + 1]).validate();
+            validate(grid[i - 1][j - 1], grid[i + 1][j + 1]);
+            validate(grid[i + 1][j - 1], grid[i - 1][j + 1]);
         } catch (ChristmasException e) {
             return 0L;
         }
         return 1L;
     }
 
-    private record Pair(char first, char second) {
-        void validate() {
-            if (first == second || (first != 'S' || second != 'M') && (first != 'M' || second != 'S')) {
-                throw new ChristmasException("This is not X-mas!");
-            }
+    void validate(char first, char second) {
+        if ((first != 'S' || second != 'M') && (first != 'M' || second != 'S')) {
+            throw new ChristmasException("This is not X-mas!");
         }
     }
 }
