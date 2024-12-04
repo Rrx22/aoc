@@ -1,4 +1,4 @@
-package rrx.aoc24;
+package rrx.utils;
 
 public class PrintUtil {
 

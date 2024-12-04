@@ -1,6 +1,6 @@
 package rrx.aoc24.day4;
 
-import rrx.Direction;
+import rrx.utils.Direction;
 
 public class LiteralXmasFinder implements XmasFinder {
 

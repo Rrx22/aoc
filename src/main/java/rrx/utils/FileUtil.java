@@ -1,4 +1,6 @@
-package rrx;
+package rrx.utils;
+
+import rrx.ChristmasException;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

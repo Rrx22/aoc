@@ -1,8 +1,8 @@
 package rrx.aoc24.day4;
 
 import rrx.ChristmasAssert;
-import rrx.FileUtil;
-import rrx.aoc24.PrintUtil;
+import rrx.utils.FileUtil;
+import rrx.utils.PrintUtil;
 
 class FindXmas {
 

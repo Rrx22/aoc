@@ -1,7 +1,7 @@
 package rrx.aoc24.day3;
 
 import rrx.ChristmasAssert;
-import rrx.FileUtil;
+import rrx.utils.FileUtil;
 
 class ComputerFixer {
 

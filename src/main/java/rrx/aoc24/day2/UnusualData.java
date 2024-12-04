@@ -1,7 +1,7 @@
 package rrx.aoc24.day2;
 
 import rrx.ChristmasAssert;
-import rrx.FileUtil;
+import rrx.utils.FileUtil;
 
 public class UnusualData {
 

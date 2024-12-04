@@ -1,4 +1,4 @@
-package rrx;
+package rrx.utils;
 
 public enum Direction {
     RIGHT(1, 0),
