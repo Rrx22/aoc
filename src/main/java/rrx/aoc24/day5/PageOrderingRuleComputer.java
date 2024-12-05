@@ -8,9 +8,9 @@ import java.util.Set;
 
 class PageOrderingRuleComputer {
 
-    private Set<int[]> pageNumberRules;
-    private List<int[]> allUpdates;
-    private List<int[]> incorrectlyOrderedUpdates;
+    private final Set<int[]> pageNumberRules;
+    private final List<int[]> allUpdates;
+    private final List<int[]> incorrectlyOrderedUpdates;
 
     public PageOrderingRuleComputer(List<String> sleighLaunchSafetyManual) {
         pageNumberRules = new HashSet<>();
@@ -53,24 +53,25 @@ class PageOrderingRuleComputer {
         return extractValidValue(update);
     }
 
-    private int validatePageNo(int idx, List<Integer> update) {
-        int[] arr = update.stream().mapToInt(Integer::intValue).toArray();
-        return validatePageNo(idx, arr);
-    }
-
     private int validatePageNo(int idx, int[] update) {
         for (var rule : pageNumberRules) {
-            if (update[idx] == rule[0]) {
-                for (int i = 0; i < idx; i++) {
-                    if (update[i] == rule[1]) {
-                        return i;
-                    }
+            int i = checkRule(idx, update, rule);
+            if (i != -1) return i;
+        }
+        return -1;
+    }
+
+    private int checkRule(int idx, int[] update, int[] rule) {
+        if (update[idx] == rule[0]) {
+            for (int i = 0; i < idx; i++) {
+                if (update[i] == rule[1]) {
+                    return i;
                 }
-            } else if (update[idx] == rule[1]) {
-                for (int i = update.length-1; i > idx; i--) {
-                    if (update[i] == rule[0]) {
-                        return i;
-                    }
+            }
+        } else if (update[idx] == rule[1]) {
+            for (int i = update.length-1; i > idx; i--) {
+                if (update[i] == rule[0]) {
+                    return i;
                 }
             }
         }
@@ -79,32 +80,24 @@ class PageOrderingRuleComputer {
 
     public long reorderIncorrectlyOrderedUpdates() {
         long result = 0L;
-
         for (var update : incorrectlyOrderedUpdates) {
             var reorderedList = reorder(Arrays.stream(update).boxed().toList());
-            result += extractValidValue(reorderedList);
+            result += extractValidValue(listToArray(reorderedList));
         }
-
         return result;
     }
 
     private List<Integer> reorder(List<Integer> update) {
         List<Integer> mutableList = new ArrayList<>(update);
         for (int i = 0; i < update.size(); i++) {
-            int toIdx = validatePageNo(i, update);
+            int toIdx = validatePageNo(i, listToArray(update));
             if (toIdx != -1) {
                 Integer value = mutableList.remove(i);
                 mutableList.add(toIdx, value);
                 return reorder(mutableList);
             }
         }
-
         return mutableList;
-    }
-
-    private int extractValidValue(List<Integer> update) {
-        int[] arr = update.stream().mapToInt(Integer::intValue).toArray();
-        return extractValidValue(arr);
     }
 
     private int extractValidValue(int[] update) {
@@ -112,4 +105,7 @@ class PageOrderingRuleComputer {
         return update[middleIdx];
     }
 
+    private int[] listToArray(List<Integer> list) {
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
 }
