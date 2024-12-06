@@ -8,4 +8,8 @@ public class ChristmasException extends RuntimeException {
     public ChristmasException(String message) {
         super("Ho Ho Ho! " + message);
     }
+
+    public ChristmasException() {
+        super("Ho Ho Ho!");
+    }
 }

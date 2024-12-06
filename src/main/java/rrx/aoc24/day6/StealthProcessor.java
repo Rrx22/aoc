@@ -2,22 +2,32 @@ package rrx.aoc24.day6;
 
 import rrx.ChristmasException;
 import rrx.utils.Direction;
+import rrx.visualizer.GridBuilder;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import java.util.HashSet;
 import java.util.Set;
 
-class StealthProcessor {
+public class StealthProcessor {
 
     private final char[][] grid;
+    private JPanel gridPanel;
     private final Guard guard = new Guard();
     private final int[] startPos;
+
+    public StealthProcessor(char[][] grid, JPanel gridPanel) {
+        this(grid);
+        this.gridPanel = gridPanel;
+    }
 
     public StealthProcessor(char[][] grid) {
         this.grid = grid;
         for (int y = 0; y < grid.length; y++) {
             for (int x = 0; x < grid[y].length; x++) {
                 char c = grid[y][x];
-                if (c != '.' && c != '#') {
+                if (c != '.' && c != '#' && c != 'O') {
                     guard.x = x;
                     guard.y = y;
                     guard.direction = switch (c) {
@@ -43,14 +53,14 @@ class StealthProcessor {
                 } else if ((guard.direction.isHorizontal() && next == '|') || (guard.direction.isVertical() && next == '-')) {
                     grid[guard.y][guard.x] = '+';
                 }
-                print(grid, guard);
-            } catch (ArrayIndexOutOfBoundsException e) {
+                repaint(grid, guard);
+            } catch (ArrayIndexOutOfBoundsException | InterruptedException e) {
                 return guard.travelCount;
             }
         }
     }
 
-    public long makeGuardsLifeHell() {
+    public long makeGuardsLifeHell(GridBuilder gb) {
         long validObstructions = 0;
 
         for (int y = 0; y < grid.length; y++) {
@@ -60,7 +70,8 @@ class StealthProcessor {
                 }
 
                 char[][] tempGrid = cloneGrid(grid);
-                tempGrid[y][x] = '#';
+                if (gb != null) gb.grid = tempGrid;
+                tempGrid[y][x] = 'O';
 
                 if (causesLoop(tempGrid)) {
                     validObstructions++;
@@ -87,12 +98,21 @@ class StealthProcessor {
                 } else if ((tempGuard.direction.isHorizontal() && next == '|') || (tempGuard.direction.isVertical() && next == '-')) {
                     tempGrid[tempGuard.y][tempGuard.x] = '+';
                 }
-                print(tempGrid, tempGuard);
-            } catch (ArrayIndexOutOfBoundsException e) {
+                repaint(tempGrid, tempGuard);
+            } catch (ArrayIndexOutOfBoundsException | InterruptedException e) {
                 break;
             }
         }
         return false;
+    }
+
+    private void repaint(char[][] grid, Guard guard) throws InterruptedException {
+        if (gridPanel == null) {
+            print(grid, guard);
+        } else {
+            SwingUtilities.invokeLater(gridPanel::repaint);
+            Thread.sleep(2);
+        }
     }
 
     private void print(char[][] printGrid, Guard guard) {
@@ -109,10 +129,10 @@ class StealthProcessor {
 
     private char moveGuard(char[][] currGrid, Guard currGuard) {
         char next = currGrid[currGuard.nextY()][currGuard.nextX()];
-        while (next == '#') {
+        while (next == '#' || next == 'O') {
             currGuard.turnRight();
             next = currGrid[currGuard.nextY()][currGuard.nextX()];
-            if (next != '#') {
+            if (next != '#' && next != 'O') {
                 currGrid[currGuard.y][currGuard.x] = '+';
             }
         }
