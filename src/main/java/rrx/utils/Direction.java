@@ -17,4 +17,11 @@ public enum Direction {
         this.x = x;
         this.y = y;
     }
+
+    public boolean isHorizontal() {
+        return this == LEFT || this == RIGHT;
+    }
+    public boolean isVertical() {
+        return this == UP || this == DOWN;
+    }
 }
