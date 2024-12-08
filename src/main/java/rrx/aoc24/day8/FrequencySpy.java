@@ -34,16 +34,20 @@ class FrequencySpy {
     }
 
     public long mapAntiNodes() {
-        long antiNodes = 0L;
+        return allAntennas.values()
+                .stream()
+                .mapToLong(this::loopOverAntennaNodes)
+                .sum();
+    }
 
-        for (List<int[]> antennas : allAntennas.values()) {
-            for (int i = 0; i < antennas.size(); i++) {
-                int[] iNode = antennas.get(i);
-                for (int j = 0; j < antennas.size(); j++) {
-                    if (i == j) continue;
-                    int[] jNode = antennas.get(j);
-                    antiNodes += findAntiNodes(iNode, jNode);
-                }
+    private long loopOverAntennaNodes(List<int[]> antennas) {
+        long antiNodes = 0L;
+        for (int i = 0; i < antennas.size(); i++) {
+            int[] iNode = antennas.get(i);
+            for (int j = 0; j < antennas.size(); j++) {
+                if (i == j) continue;
+                int[] jNode = antennas.get(j);
+                antiNodes += findAntiNodes(iNode, jNode);
             }
         }
         return antiNodes;
@@ -74,7 +78,7 @@ class FrequencySpy {
     private long processAntiNode(int x, int y) {
         String node = y + "," + x;
         if (GridUtil.isWithinBounds(x, y, grid[0].length, grid.length) && visitedNodes.add(node)) {
-            if (alsoCheckHarmonics && grid[y][x] == '.') grid[y][x] = '#';
+//            if (alsoCheckHarmonics && grid[y][x] == '.') grid[y][x] = '#';
             return 1L;
         }
         return 0L;
