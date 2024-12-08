@@ -2,6 +2,7 @@ package rrx.aoc24.day6;
 
 import rrx.ChristmasException;
 import rrx.utils.Direction;
+import rrx.utils.GridUtil;
 import rrx.visualizer.GridBuilder;
 
 import javax.swing.JFrame;
@@ -69,7 +70,7 @@ public class StealthProcessor {
                     continue;
                 }
 
-                char[][] tempGrid = cloneGrid(grid);
+                char[][] tempGrid = GridUtil.cloneGrid(grid);
                 if (gb != null) gb.grid = tempGrid;
                 tempGrid[y][x] = 'O';
 
@@ -117,14 +118,6 @@ public class StealthProcessor {
 
     private void print(char[][] printGrid, Guard guard) {
 //        PrintUtil.gridZoom(printGrid, guard.x, guard.y);
-    }
-
-    private char[][] cloneGrid(char[][] og) {
-        char[][] clone = new char[og.length][og[0].length];
-        for (int i = 0; i < og.length; i++) {
-            System.arraycopy(og[i], 0, clone[i], 0, og[i].length);
-        }
-        return clone;
     }
 
     private char moveGuard(char[][] currGrid, Guard currGuard) {
