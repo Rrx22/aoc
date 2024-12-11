@@ -60,13 +60,13 @@ class FrequencySpy {
         int[] antiNode1 = Arrays.copyOf(alsoCheckHarmonics ? jNode : iNode, 2);
         int[] antiNode2 = Arrays.copyOf(alsoCheckHarmonics ? iNode : jNode, 2);
 
-        while (GridUtil.isWithinBounds(antiNode1[0], antiNode1[1], grid[0].length, grid.length)) {
+        while (GridUtil.isWithinBounds(antiNode1[1], antiNode1[0], grid)) {
             antiNode1[0] += xDiff;
             antiNode1[1] += yDiff;
             result += processAntiNode(antiNode1[0], antiNode1[1]);
             if (!alsoCheckHarmonics) break;
         }
-        while (GridUtil.isWithinBounds(antiNode2[0], antiNode2[1], grid[0].length, grid.length)) {
+        while (GridUtil.isWithinBounds(antiNode2[1], antiNode2[0], grid)) {
             antiNode2[0] -= xDiff;
             antiNode2[1] -= yDiff;
             result += processAntiNode(antiNode2[0], antiNode2[1]);
@@ -77,8 +77,7 @@ class FrequencySpy {
 
     private long processAntiNode(int x, int y) {
         String node = y + "," + x;
-        if (GridUtil.isWithinBounds(x, y, grid[0].length, grid.length) && visitedNodes.add(node)) {
-//            if (alsoCheckHarmonics && grid[y][x] == '.') grid[y][x] = '#';
+        if (GridUtil.isWithinBounds(x, y, grid) && visitedNodes.add(node)) {
             return 1L;
         }
         return 0L;

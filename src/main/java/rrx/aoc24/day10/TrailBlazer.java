@@ -1,6 +1,5 @@
 package rrx.aoc24.day10;
 
-import rrx.utils.Direction;
 import rrx.utils.GridUtil;
 
 import java.util.Arrays;
@@ -15,7 +14,7 @@ import static rrx.utils.Direction.UP;
 class TrailBlazer {
 
     private char[][] grid;
-    private Map<String, HashMap<String, Integer>> trails;
+    private Map<String, Map<String, Integer>> trails;
 
     public long totalSets() {
         return trails.values().stream()
@@ -58,19 +57,20 @@ class TrailBlazer {
     }
 
     private void populateRoute(int expectedVal, String trailHead, int row, int col) {
-        if (!GridUtil.isWithinBounds(row, col, grid.length, grid[0].length)) {
-            return;
+        if (!GridUtil.isWithinBounds(row, col, grid)) {
+            return; // exit; out of bounds
         }
 
         int currVal = Character.getNumericValue(grid[row][col]);
         if (currVal != expectedVal) {
-            return;
+            return; // exit; wrong value
         }
 
         if (currVal == 9) {
-            var th = trails.get(trailHead);
-            th.compute(String.format("%d,%d", row, col), (_, v) -> (v == null) ? 1 : v + 1);
-            return;
+            String coords = String.format("%d,%d", row, col);
+            trails.get(trailHead)
+                    .compute(coords, (_, v) -> (v == null) ? 1 : v + 1);
+            return; // exit; successful find
         }
 
         populateRoute(currVal + 1, trailHead, row + RIGHT.y, col + RIGHT.x);
