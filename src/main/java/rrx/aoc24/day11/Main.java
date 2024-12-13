@@ -8,7 +8,7 @@ class Main {
     public static void main(String[] args) {
         String plutonianPebbles = FileUtil.readFile("24/d11p1").getFirst();
 
-        ChristmasAssert.test(Me.blinkPart2(25, plutonianPebbles), 183484L);
-        ChristmasAssert.test(Me.blinkPart2(75, plutonianPebbles), 0L);
+        ChristmasAssert.test(Me.blink(25, plutonianPebbles), 183484L);
+        ChristmasAssert.test(Me.blinkPart2(75, plutonianPebbles), 218817038947400L);
     }
 }
