@@ -24,4 +24,12 @@ public enum Direction {
     public boolean isVertical() {
         return this == UP || this == DOWN;
     }
+
+    public static Direction[] valuesRLDU() {
+        return new Direction[] {RIGHT, LEFT, DOWN, UP};
+    }
+
+    public boolean isDiagonal() {
+        return this == DOWN_RIGHT || this == DOWN_LEFT || this == UP_RIGHT || this == UP_LEFT;
+    }
 }
