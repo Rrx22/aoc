@@ -1,16 +1,17 @@
-package rrx.visualizer;
+package rrx.visualizer.workers24;
 
 import rrx.aoc24.day6.StealthProcessor;
+import rrx.visualizer.GridBuilder;
 
 import javax.swing.SwingWorker;
 
-public class Worker extends SwingWorker<Void, Void> {
+public class Day6Worker extends SwingWorker<Void, Void> {
 
     private final StealthProcessor stealthProcessor;
     private final GridBuilder gb;
     private final int part;
 
-    public Worker(StealthProcessor stealthProcessor, GridBuilder gb, int part) {
+    public Day6Worker(StealthProcessor stealthProcessor, GridBuilder gb, int part) {
         this.stealthProcessor = stealthProcessor;
         this.gb = gb;
         this.part = part;

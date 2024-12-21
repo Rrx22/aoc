@@ -1,11 +1,12 @@
 package rrx.visualizer;
 
+import rrx.aoc24.day14.RAT;
 import rrx.aoc24.day6.StealthProcessor;
+import rrx.visualizer.workers24.Day14Worker;
+import rrx.visualizer.workers24.Day6Worker;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,14 +48,28 @@ public class GridBuilder extends JFrame {
         repaint();
     }
 
-    public void startPart1() {
+    /*
+        AOC 2024
+     */
+
+    // Day 14
+    public void startDay14Part2(RAT rat) {
+        rat.setGridPanel(gridPanel);
+        Day14Worker worker = new Day14Worker(rat);
+        worker.execute();
+    }
+
+    // Day 6
+    public void startDay6Part1() {
         StealthProcessor stealthProcessor = new StealthProcessor(grid, gridPanel);
-        Worker worker = new Worker(stealthProcessor, this, 1);
+        Day6Worker worker = new Day6Worker(stealthProcessor, this, 1);
         worker.execute(); // start background task
     }
-    public void startPart2() {
+    public void startDay6Part2() {
         StealthProcessor stealthProcessor = new StealthProcessor(grid, gridPanel);
-        Worker worker = new Worker(stealthProcessor, this, 2);
+        Day6Worker worker = new Day6Worker(stealthProcessor, this, 2);
         worker.execute(); // start background task
     }
+
+
 }

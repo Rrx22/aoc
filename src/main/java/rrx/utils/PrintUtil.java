@@ -16,6 +16,18 @@ public class PrintUtil {
         System.out.println(sb);
     }
 
+    public static void grid(String[][] grid) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < grid.length; i++) {
+            sb.append(i).append(": ");
+            for (String s : grid[i]) {
+                sb.append(s);
+            }
+            sb.append("\n");
+        }
+        System.out.println(sb);
+    }
+
     public static void gridZoom(char[][] tempGrid, int x, int y) {
         int maxHeight = 26;
         int maxWidth = tempGrid[0].length;

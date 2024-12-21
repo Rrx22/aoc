@@ -37,7 +37,7 @@ public class PanelFactory {
                     // Draw cell background
                     char c = switch (grid[y][x]) {
                         case '.' -> ' ';
-                        case '#' -> '■';
+                        case '#', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> '■';
                         case '+' -> '✚';
                         case '-' -> '─';
                         case '|' -> '│';
@@ -47,7 +47,7 @@ public class PanelFactory {
                     };
 
                     Color color = switch (c) {
-                        case '■',' ' -> Color.DARK_GRAY;
+                        case '■',' ' -> Color.ORANGE;
                         case '⚪' -> Color.BLUE;
                         default -> Color.WHITE;
                     };

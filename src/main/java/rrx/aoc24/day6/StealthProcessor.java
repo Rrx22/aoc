@@ -5,7 +5,6 @@ import rrx.utils.Direction;
 import rrx.utils.GridUtil;
 import rrx.visualizer.GridBuilder;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.util.HashSet;
