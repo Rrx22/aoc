@@ -2,9 +2,9 @@ package rrx.aoc24.day14;
 
 import rrx.ChristmasException;
 import rrx.utils.PrintUtil;
+import rrx.visualizer.Visualisable;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * Robot Avoidance Tool
  */
-public class RAT {
+public class RAT implements Visualisable {
 
 
     private JPanel gridPanel;
@@ -23,12 +23,11 @@ public class RAT {
     private boolean isEasterEggFound = false;
     private List<Robot> robots;
 
-    public long moveRobots(long moves) throws InterruptedException {
+    public long moveRobots(long moves) {
 
         for (long i = 0; i < moves; i++) {
             robots.forEach(r -> r.teleport(grid));
             updateGrid();
-            repaint();
 
             if (i % 500 == 0) System.out.println("MILESTONE: " + i);
             if (isEasterEggFound) {
@@ -52,6 +51,11 @@ public class RAT {
             grid[coords[1]][coords[0]] = entry.getValue();
         }
         identifyEasterEgg();
+        if (gridPanel == null) {
+            PrintUtil.grid(grid);
+        } else {
+            repaint(2);
+        }
     }
 
     private void identifyEasterEgg() {
@@ -161,10 +165,17 @@ public class RAT {
         updateGrid();
     }
 
+    @Override
     public char[][] getGrid() {
         return grid;
     }
 
+    @Override
+    public JPanel getGridPanel() {
+        return gridPanel;
+    }
+
+    @Override
     public void setGridPanel(JPanel gridPanel) {
         this.gridPanel = gridPanel;
     }
@@ -188,15 +199,6 @@ public class RAT {
                 newP = newP - max;
             }
             return newP;
-        }
-    }
-
-    private void repaint() throws InterruptedException {
-        if (gridPanel == null) {
-            PrintUtil.grid(grid);
-        } else {
-            SwingUtilities.invokeLater(gridPanel::repaint);
-            Thread.sleep(2);
         }
     }
 }

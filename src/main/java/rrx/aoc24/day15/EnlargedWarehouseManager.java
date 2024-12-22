@@ -3,11 +3,13 @@ package rrx.aoc24.day15;
 import rrx.ChristmasException;
 import rrx.utils.Direction;
 import rrx.utils.PrintUtil;
+import rrx.visualizer.Visualisable;
 
+import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.List;
 
-class EnlargedWarehouseManager {
+public class EnlargedWarehouseManager implements Visualisable {
 
     private final char[][] grid;
     private final List<Direction> directions = new ArrayList<>();
@@ -15,6 +17,7 @@ class EnlargedWarehouseManager {
     private final List<Wall> walls = new ArrayList<>();
     private final List<Box> boxes = new ArrayList<>();
     private final Robot robot;
+    private JPanel gridPanel;
 
     public EnlargedWarehouseManager(List<String> input) {
         int split = input.indexOf("");
@@ -24,8 +27,7 @@ class EnlargedWarehouseManager {
         for (int i = 0; i < input.size(); i++) {
             char[] charArray = input.get(i).toCharArray();
             int newColCount = 0;
-            for (int j = 0; j < charArray.length; j++) {
-                char c = charArray[j];
+            for (char c : charArray) {
                 switch (c) {
                     case '#' -> {
                         walls.add(new Wall(newColCount, i));
@@ -48,7 +50,6 @@ class EnlargedWarehouseManager {
     public long moveRobot() {
         for (var dir : directions) {
             robot.move(dir, boxes, walls);
-            System.out.println("Move " + dir + ":");
             updateGrid();
         }
         return sumBoxGPSCoords();
@@ -78,7 +79,26 @@ class EnlargedWarehouseManager {
                 grid[i][j] = c;
             }
         }
-        PrintUtil.gridZoom(grid, robot.coords[0], robot.coords[1]);
+        if (gridPanel != null) {
+            repaint(5);
+        } else {
+            PrintUtil.gridZoom(grid, robot.coords[0], robot.coords[1]);
+        }
+    }
+
+    @Override
+    public void setGridPanel(JPanel gridPanel) {
+        this.gridPanel = gridPanel;
+    }
+
+    @Override
+    public JPanel getGridPanel() {
+        return gridPanel;
+    }
+
+    @Override
+    public char[][] getGrid() {
+        return grid;
     }
 
     record Robot(char c, int[] coords) {

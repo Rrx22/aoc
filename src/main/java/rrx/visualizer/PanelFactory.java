@@ -1,7 +1,5 @@
 package rrx.visualizer;
 
-import rrx.ChristmasException;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -43,13 +41,14 @@ public class PanelFactory {
                         case '|' -> '│';
                         case '^' -> '^';
                         case 'O' -> '⚪';
-                        default -> throw new ChristmasException();
+                        case '@' -> '⚙';
+                        default -> grid[y][x];
                     };
 
                     Color color = switch (c) {
-                        case '■',' ' -> Color.ORANGE;
-                        case '⚪' -> Color.BLUE;
-                        default -> Color.WHITE;
+                        case '[', ']',' ' -> Color.LIGHT_GRAY;
+                        case '⚙' -> Color.RED;
+                        default -> Color.DARK_GRAY;
                     };
                     // Draw character
                     g.setColor(color);

@@ -1,12 +1,10 @@
 package rrx.visualizer;
 
-import rrx.aoc24.day14.RAT;
-import rrx.aoc24.day6.StealthProcessor;
-import rrx.visualizer.workers24.Day14Worker;
-import rrx.visualizer.workers24.Day6Worker;
+import rrx.ChristmasException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,7 +16,7 @@ public class GridBuilder extends JFrame {
     public final int maxX;
     public final int maxY;
 
-    public char[][] grid;
+    public final char[][] grid;
     private JPanel gridPanel;
 
     public GridBuilder(char[][] grid) {
@@ -28,10 +26,12 @@ public class GridBuilder extends JFrame {
         this.maxY = grid.length;
         this.maxX = grid[0].length;
 
-        setSize(BORDER * 2 + TILE_SIZE * maxX, BORDER * 2 + TILE_SIZE * maxY);
+        setSize(BORDER * 2 + TILE_SIZE * (maxX + 5), BORDER * 2 + TILE_SIZE * (maxY + 10));
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        createGui();
+        setVisible(true);
     }
 
     public void createGui() {
@@ -48,28 +48,13 @@ public class GridBuilder extends JFrame {
         repaint();
     }
 
-    /*
-        AOC 2024
-     */
-
-    // Day 14
-    public void startDay14Part2(RAT rat) {
-        rat.setGridPanel(gridPanel);
-        Day14Worker worker = new Day14Worker(rat);
-        worker.execute();
+    public void start(Visualisable visualisable, Class<? extends SwingWorker<Void, Void>> workerClass) {
+        try {
+            visualisable.setGridPanel(gridPanel);
+            var worker = workerClass.getDeclaredConstructor(Visualisable.class).newInstance(visualisable);
+            worker.execute();
+        } catch (Exception e) {
+            throw new ChristmasException(e.getMessage());
+        }
     }
-
-    // Day 6
-    public void startDay6Part1() {
-        StealthProcessor stealthProcessor = new StealthProcessor(grid, gridPanel);
-        Day6Worker worker = new Day6Worker(stealthProcessor, this, 1);
-        worker.execute(); // start background task
-    }
-    public void startDay6Part2() {
-        StealthProcessor stealthProcessor = new StealthProcessor(grid, gridPanel);
-        Day6Worker worker = new Day6Worker(stealthProcessor, this, 2);
-        worker.execute(); // start background task
-    }
-
-
 }
