@@ -11,6 +11,10 @@ public interface Visualisable {
     void setGridPanel(JPanel gridPanel);
     JPanel getGridPanel();
 
+    /**
+     * 📺 Call this function at the moment you want to update the UI
+     * 📺 Make sure the correct grid is set and being updated
+     */
     default void repaint(int millis) {
         try {
             SwingUtilities.invokeLater(getGridPanel()::repaint);

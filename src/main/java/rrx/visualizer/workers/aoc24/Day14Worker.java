@@ -1,4 +1,4 @@
-package rrx.visualizer.workers24;
+package rrx.visualizer.workers.aoc24;
 
 import rrx.aoc24.day14.RAT;
 import rrx.visualizer.Visualisable;
