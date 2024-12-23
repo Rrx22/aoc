@@ -2,7 +2,7 @@ package rrx.aoc24.day14;
 
 import rrx.ChristmasException;
 import rrx.utils.PrintUtil;
-import rrx.visualizer.Visualisable;
+import rrx.visualizer.constant.Visualisable;
 
 import javax.swing.JPanel;
 import java.util.Arrays;
@@ -173,6 +173,11 @@ public class RAT implements Visualisable {
     @Override
     public JPanel getGridPanel() {
         return gridPanel;
+    }
+
+    @Override
+    public void executTask() {
+        moveRobots(Long.MAX_VALUE);
     }
 
     @Override

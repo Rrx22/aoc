@@ -1,4 +1,4 @@
-package rrx.visualizer;
+package rrx.visualizer.constant;
 
 import rrx.ChristmasException;
 
@@ -10,6 +10,9 @@ public interface Visualisable {
     char[][] getGrid();
     void setGridPanel(JPanel gridPanel);
     JPanel getGridPanel();
+
+    // 🔥To kick off the actual task of the AOC challenge🔥
+    void executTask();
 
     /**
      * 📺 Call this function at the moment you want to update the UI

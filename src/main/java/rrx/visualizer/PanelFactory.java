@@ -1,9 +1,11 @@
 package rrx.visualizer;
 
+import rrx.visualizer.constant.GridBuilder;
+
 import javax.swing.*;
 import java.awt.*;
 
-import static rrx.visualizer.GridBuilder.TILE_SIZE;
+import static rrx.visualizer.constant.GridBuilder.TILE_SIZE;
 
 public class PanelFactory {
     private final GridBuilder gb;

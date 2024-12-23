@@ -3,7 +3,7 @@ package rrx.aoc24.day6;
 import rrx.ChristmasException;
 import rrx.utils.Direction;
 import rrx.utils.GridUtil;
-import rrx.visualizer.Visualisable;
+import rrx.visualizer.constant.Visualisable;
 
 import javax.swing.JPanel;
 import java.util.HashSet;
@@ -125,6 +125,11 @@ public class StealthProcessor implements Visualisable {
     @Override
     public JPanel getGridPanel() {
         return gridPanel;
+    }
+
+    @Override
+    public void executTask() {
+        makeGuardsLifeHell();
     }
 
     @Override

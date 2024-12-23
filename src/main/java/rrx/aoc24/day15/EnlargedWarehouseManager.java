@@ -3,7 +3,7 @@ package rrx.aoc24.day15;
 import rrx.ChristmasException;
 import rrx.utils.Direction;
 import rrx.utils.PrintUtil;
-import rrx.visualizer.Visualisable;
+import rrx.visualizer.constant.Visualisable;
 
 import javax.swing.JPanel;
 import java.util.ArrayList;
@@ -94,6 +94,11 @@ public class EnlargedWarehouseManager implements Visualisable {
     @Override
     public JPanel getGridPanel() {
         return gridPanel;
+    }
+
+    @Override
+    public void executTask() {
+        moveRobot();
     }
 
     @Override

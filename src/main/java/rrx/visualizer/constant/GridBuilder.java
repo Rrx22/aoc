@@ -1,10 +1,10 @@
-package rrx.visualizer;
+package rrx.visualizer.constant;
 
 import rrx.ChristmasException;
+import rrx.visualizer.PanelFactory;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -48,10 +48,10 @@ public class GridBuilder extends JFrame {
         repaint();
     }
 
-    public void start(Visualisable visualisable, Class<? extends SwingWorker<Void, Void>> workerClass) {
+    public void start(Visualisable visualisable) {
         try {
             visualisable.setGridPanel(gridPanel);
-            var worker = workerClass.getDeclaredConstructor(Visualisable.class).newInstance(visualisable);
+            var worker = new Worker(visualisable);
             worker.execute();
         } catch (Exception e) {
             throw new ChristmasException(e.getMessage());
