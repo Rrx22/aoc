@@ -2,8 +2,8 @@ package rrx.utils;
 
 public enum Direction {
     RIGHT(1, 0),
-    LEFT(-1, 0),
     DOWN(0, 1),
+    LEFT(-1, 0),
     UP(0, -1),
     DOWN_RIGHT(1, 1),
     DOWN_LEFT(-1, 1),
@@ -26,7 +26,7 @@ public enum Direction {
     }
 
     public static Direction[] valuesRLDU() {
-        return new Direction[] {RIGHT, LEFT, DOWN, UP};
+        return new Direction[] {RIGHT, DOWN, LEFT, UP};
     }
 
     public boolean isDiagonal() {

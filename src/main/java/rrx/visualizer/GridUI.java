@@ -2,33 +2,32 @@ package rrx.visualizer;
 
 import rrx.aoc24.day14.RAT;
 import rrx.aoc24.day15.EnlargedWarehouseManager;
+import rrx.aoc24.day16.MazeBolter;
 import rrx.aoc24.day6.StealthProcessor;
 import rrx.utils.FileUtil;
 import rrx.visualizer.constant.GridBuilder;
 import rrx.visualizer.constant.Visualisable;
 
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 
-public class Main {
+/**
+ * 📺 Will easily visualizes any char[][] 2d array 📺
+ */
+public class GridUI {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Visualisable visualisable = AOC2024.day6();
+            Visualisable visualisable = AOC2024.day16();
             GridBuilder gridBuilder = new GridBuilder(visualisable.getGrid());
             gridBuilder.start(visualisable);
         });
     }
 
-    /**
-     * 📺 Will easily visualizes any char[][] 2d array 📺
-     * @param visualisable Interface with some functions to make it possible to visualize your grid.
-     * @param worker Simply pass the class of your worker (i.e. DayXXWorker.class)
-     */
-    record DayInfo(Visualisable visualisable, Class<? extends SwingWorker<Void, Void>> worker) {
-    }
-
     private static final class AOC2024 {
+
+        private static Visualisable day16() {
+            return new MazeBolter(FileUtil.readToGrid("24/d16p1"));
+        }
 
         private static Visualisable day15() {
             return new EnlargedWarehouseManager(FileUtil.readFile("24/d15p1"));

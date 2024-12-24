@@ -19,6 +19,10 @@ public interface Visualisable {
      * 📺 Make sure the correct grid is set and being updated
      */
     default void repaint(int millis) {
+        if (getGridPanel() == null) {
+            System.out.println("WARN: Gridpanel is null");
+            return;
+        }
         try {
             SwingUtilities.invokeLater(getGridPanel()::repaint);
             Thread.sleep(millis);

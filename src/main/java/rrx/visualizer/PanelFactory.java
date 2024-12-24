@@ -37,20 +37,23 @@ public class PanelFactory {
                     // Draw cell background
                     char c = switch (grid[y][x]) {
                         case '.' -> ' ';
-                        case '#', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> '■';
+                        case '#' -> '■';
+                        case '1', '2', '3', '4', '5', '6', '7', '8', '9' -> '*';
                         case '+' -> '✚';
                         case '-' -> '─';
                         case '|' -> '│';
-                        case '^' -> '^';
-                        case 'O' -> '⚪';
+                        case 'O', '0' -> '⚪';
                         case '@' -> '⚙';
                         default -> grid[y][x];
                     };
 
                     Color color = switch (c) {
-                        case '[', ']',' ' -> Color.LIGHT_GRAY;
+                        case '[', ']',' ', '.' -> Color.LIGHT_GRAY;
                         case '⚙' -> Color.RED;
-                        default -> Color.DARK_GRAY;
+                        case 'S', 'E' -> Color.GREEN;
+                        case 'v', '^', '>', '<' -> Color.WHITE;
+                        case '#', '■' -> Color.DARK_GRAY;
+                        default -> Color.ORANGE;
                     };
                     // Draw character
                     g.setColor(color);
