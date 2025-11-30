@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
  */
 public class GridUI {
 
-    public static void main(String[] args) {
+    static void main() {
         SwingUtilities.invokeLater(() -> {
             Visualisable visualisable = AOC2025.day1();
             GridBuilder gridBuilder = new GridBuilder(visualisable.getGrid());
