@@ -12,7 +12,7 @@ public class Worker extends SwingWorker<Void, Void> {
 
     @Override
     protected Void doInBackground() {
-        visualisable.executTask();
+        visualisable.executeTask();
         return null;
     }
 

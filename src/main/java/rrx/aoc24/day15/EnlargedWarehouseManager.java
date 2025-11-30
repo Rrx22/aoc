@@ -97,7 +97,7 @@ public class EnlargedWarehouseManager implements Visualisable {
     }
 
     @Override
-    public void executTask() {
+    public void executeTask() {
         moveRobot();
     }
 

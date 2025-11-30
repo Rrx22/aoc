@@ -176,7 +176,7 @@ public class RAT implements Visualisable {
     }
 
     @Override
-    public void executTask() {
+    public void executeTask() {
         moveRobots(Long.MAX_VALUE);
     }
 

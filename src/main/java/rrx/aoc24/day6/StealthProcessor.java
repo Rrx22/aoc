@@ -128,7 +128,7 @@ public class StealthProcessor implements Visualisable {
     }
 
     @Override
-    public void executTask() {
+    public void executeTask() {
         makeGuardsLifeHell();
     }
 

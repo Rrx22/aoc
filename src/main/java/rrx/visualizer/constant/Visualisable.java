@@ -12,7 +12,7 @@ public interface Visualisable {
     JPanel getGridPanel();
 
     // 🔥To kick off the actual task of the AOC challenge🔥
-    void executTask();
+    void executeTask();
 
     /**
      * 📺 Call this function at the moment you want to update the UI

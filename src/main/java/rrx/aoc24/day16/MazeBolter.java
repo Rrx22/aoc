@@ -206,7 +206,7 @@ public class MazeBolter implements Visualisable {
     }
 
     @Override
-    public void executTask() {
+    public void executeTask() {
         solveMaze();
     }
 

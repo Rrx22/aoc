@@ -4,6 +4,7 @@ import rrx.aoc24.day14.RAT;
 import rrx.aoc24.day15.EnlargedWarehouseManager;
 import rrx.aoc24.day16.MazeBolter;
 import rrx.aoc24.day6.StealthProcessor;
+import rrx.aoc25.day1.Challenge;
 import rrx.utils.FileUtil;
 import rrx.visualizer.constant.GridBuilder;
 import rrx.visualizer.constant.Visualisable;
@@ -17,10 +18,16 @@ public class GridUI {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Visualisable visualisable = AOC2024.day16();
+            Visualisable visualisable = AOC2025.day1();
             GridBuilder gridBuilder = new GridBuilder(visualisable.getGrid());
             gridBuilder.start(visualisable);
         });
+    }
+
+    private static final class AOC2025 {
+        private static Visualisable day1() {
+            return new Challenge(FileUtil.readToGrid("25/d01p1"));
+        }
     }
 
     private static final class AOC2024 {
