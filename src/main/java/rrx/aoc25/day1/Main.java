@@ -4,13 +4,16 @@ import rrx.ChristmasAssert;
 import rrx.utils.FileUtil;
 
 class Main {
-    public static void main(String[] args) {
-        var x = FileUtil.readToGrid("25/d01p1");
+    static void main() {
 
-        Challenge y = new Challenge(x);
-        ChristmasAssert.test(y.doSomething(), 0L);
+        DialLock dialLock = new DialLock(FileUtil.readFile("25/d01p1"));
 
-//        y.changeItUp();
-//        ChristmasAssert.test(y.doSomething(), 0L);
+        long password = dialLock.turnDials();
+        ChristmasAssert.test(
+                password < 6668L
+                        && password != 6142L
+                        && password != 6568L
+                , password);
+
     }
 }
