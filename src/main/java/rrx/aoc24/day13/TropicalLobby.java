@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class TropicalLobby {
 
-    public static void main(String[] args) {
+    static void main() {
         var clawMachines = FileUtil.readFile("24/d13p1");
         MathBeatsMachine mathBeatsMachine = new MathBeatsMachine(clawMachines, 0L);
         ChristmasAssert.test(mathBeatsMachine.analyse(), 31065L);

@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class RepairBridge {
 
-    public static void main(String[] args) {
+    static void main() {
         var operators = FileUtil.readFile("24/d07p1");
 
         BridgeEvaluator bridgeEvaluator = new BridgeEvaluator(operators);

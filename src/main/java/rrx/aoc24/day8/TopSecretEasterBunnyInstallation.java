@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class TopSecretEasterBunnyInstallation {
 
-    public static void main(String[] args) {
+    static void main() {
 
         FrequencySpy frequencySpy = new FrequencySpy(FileUtil.readToGrid("24/d08p1"));
         ChristmasAssert.test(frequencySpy.mapAntiNodes(), 261L);

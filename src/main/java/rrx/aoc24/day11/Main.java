@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class Main {
 
-    public static void main(String[] args) {
+    static void main() {
         String plutonianPebbles = FileUtil.readFile("24/d11p1").getFirst();
 
         ChristmasAssert.test(Me.blink(25, plutonianPebbles), 183484L);

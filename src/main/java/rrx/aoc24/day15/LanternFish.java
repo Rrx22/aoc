@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class LanternFish {
 
-    public static void main(String[] args) {
+    static void main() {
         var input = FileUtil.readFile("24/d15p1");
 //        var input = FileUtil.readFile("24/d16p1");
 

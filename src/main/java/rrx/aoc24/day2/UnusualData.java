@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class UnusualData {
 
-    public static void main(String[] args) {
+    static void main() {
         var unusualReports = FileUtil.readToIntArr("24/d02p1", " ");
         var unusualDataAnalyser = new UnusualDataAnalyzer();
 

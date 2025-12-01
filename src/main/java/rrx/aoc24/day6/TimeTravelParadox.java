@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class TimeTravelParadox {
 
-    public static void main(String[] args) {
+    static void main() {
         StealthProcessor stealthProcessor = new StealthProcessor(FileUtil.readToGrid("24/d06p1"));
         ChristmasAssert.test(stealthProcessor.sneakPastGuard(), 4602L);
 

@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class LavaIslandHikingGuide {
 
-    public static void main(String[] args) {
+    static void main() {
         var topographicMap = FileUtil.readToGrid("24/d10p1");
 
         TrailBlazer trailBlazer = new TrailBlazer()

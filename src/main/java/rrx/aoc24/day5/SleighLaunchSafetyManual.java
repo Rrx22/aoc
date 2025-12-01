@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class SleighLaunchSafetyManual {
 
-    public static void main(String[] args) {
+    static void main() {
         var sleighLaunchSafetyManual = FileUtil.readFile("24/d05p1");
         PageOrderingRuleComputer computer = new PageOrderingRuleComputer(sleighLaunchSafetyManual);
 

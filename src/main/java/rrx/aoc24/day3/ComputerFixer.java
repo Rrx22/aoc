@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class ComputerFixer {
 
-    public static void main(String[] args) {
+    static void main() {
         var corruptedFile = FileUtil.readFile("24/d03p1");
         var corruptedMemoryHelper = new CorruptedMemoryHelper();
 

@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class Main {
 
-    public static void main(String[] args) {
+    static void main() {
         var disk = FileUtil.readFile("24/d09p1").getFirst();
 
         ChristmasAssert.test(DiskTool.doSomething(disk), 6398343689624L);

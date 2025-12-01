@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 class LocationSimilarityComputer {
 
-    public static void main(String[] args) throws URISyntaxException {
+    static void main() throws URISyntaxException {
         var locationLists = readToLocationMaps();
         ChristmasAssert.test(locationLists.calculateSimilarity(), 21070419L);
     }

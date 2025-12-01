@@ -20,7 +20,7 @@ import rrx.utils.FileUtil;
 import rrx.ChristmasAssert;
 
 class Main {
-    public static void main(String[] args) {
+    static void main() {
         var x = FileUtil.readToGrid("25/d$(printf "%02d" ${d})p1");
 
         Something y = new Something(x);

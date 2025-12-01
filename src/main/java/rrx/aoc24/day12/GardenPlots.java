@@ -6,7 +6,7 @@ import rrx.utils.Pair;
 
 class GardenPlots {
 
-    public static void main(String[] args) {
+    static void main() {
         var gardenMap = FileUtil.readToGrid("24/d12p1");
         Pair<Long, Long> quotations = GardenFenceCalculator.calculateFencePrice(gardenMap);
         ChristmasAssert.test(quotations.first(), 1465968L);

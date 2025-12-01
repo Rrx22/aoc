@@ -5,7 +5,7 @@ import rrx.utils.FileUtil;
 
 class FindXmas {
 
-    public static void main(String[] args) {
+    static void main() {
         var grid = FileUtil.readToGrid("24/d04p1");
         int height = grid.length;
         int width = grid[0].length;

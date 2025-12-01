@@ -12,7 +12,7 @@ import java.util.Queue;
 
 class LocationDistanceComputer {
 
-    public static void main(String[] args) throws URISyntaxException {
+    static void main() throws URISyntaxException {
         var locationQs = readToLocationQs();
         ChristmasAssert.test(locationQs.calculateDistance(), 1223326L);
     }

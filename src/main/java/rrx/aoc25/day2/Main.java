@@ -4,7 +4,7 @@ import rrx.ChristmasAssert;
 import rrx.utils.FileUtil;
 
 class Main {
-    public static void main(String[] args) {
+    static void main() {
         var x = FileUtil.readToGrid("25/d02p1");
 
         Something y = new Something(x);
