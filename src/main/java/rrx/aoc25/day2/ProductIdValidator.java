@@ -2,6 +2,7 @@ package rrx.aoc25.day2;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 class ProductIdValidator {
 
@@ -15,47 +16,15 @@ class ProductIdValidator {
     }
 
     public long scan() {
-        return fixTheScanConditions
-                ? scanForRepeatsComplete()
-                : scanForRepeatedTwiceHalfWay();
-    }
-
-    private long scanForRepeatedTwiceHalfWay() {
         long sumOfInvalidIDs = 0L;
+        String p1regex = "^(.+?)\\1$";
+        String p2regex = "^(.+?)\\1+$";
+        Pattern regex = Pattern.compile(fixTheScanConditions ? p2regex : p1regex);
+
         for (var range : productIdRanges) {
             for (long i = range.min(); i <= range.max(); i++) {
-                String val = String.valueOf(i);
-                if (val.length() % 2 != 0) continue; // must be even
-                String firstHalf = val.substring(0, val.length()/2);
-                String secondHalf = val.substring(val.length()/2);
-                if (firstHalf.equals(secondHalf)) {
+                if (regex.matcher(String.valueOf(i)).matches()) {
                     sumOfInvalidIDs += i;
-                }
-            }
-        }
-        return sumOfInvalidIDs;
-    }
-
-    private long scanForRepeatsComplete() {
-        long sumOfInvalidIDs = 0L;
-        for (var range : productIdRanges) {
-            for (long i = range.min(); i <= range.max(); i++) {
-                String val = String.valueOf(i);
-                for (int jump = 1; jump <= val.length() / 2; jump++) {
-                    boolean isRepeated = false;
-                    if (val.length() % jump != 0) continue; // otherwise, it is not possible to happen
-                    String requiredPattern = val.substring(0, jump);
-                    for (int startIdx = jump; startIdx < val.length(); startIdx+=jump) {
-                        if (!requiredPattern.equals(val.substring(startIdx, startIdx+jump))) {
-                            isRepeated = false;
-                            break;
-                        }
-                        isRepeated = true;
-                    }
-                    if (isRepeated) {
-                        sumOfInvalidIDs += i;
-                        break;
-                    }
                 }
             }
         }
