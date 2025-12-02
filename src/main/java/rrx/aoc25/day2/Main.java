@@ -5,12 +5,12 @@ import rrx.utils.FileUtil;
 
 class Main {
     static void main() {
-        var x = FileUtil.readToGrid("25/d02p1");
+        var rangeInput = FileUtil.readFile("25/d02p1").getFirst();
 
-        Something y = new Something(x);
-        ChristmasAssert.test(y.doSomething(), 0L);
+        ProductIdValidator y = new ProductIdValidator(rangeInput);
+        ChristmasAssert.test(y.scan(), 28846518423L);
 
-        y.changeItUp();
-        ChristmasAssert.test(y.doSomething(), 0L);
+        y.fixTheScanConditions();
+        ChristmasAssert.test(y.scan(), 31578210022L);
     }
 }
