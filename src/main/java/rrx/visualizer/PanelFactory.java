@@ -43,12 +43,12 @@ public class PanelFactory {
                         case '-' -> '─';
                         case '|' -> '│';
                         case 'O', '0' -> '⚪';
-                        case '@' -> '⚙';
+                        case '@' -> '■';
                         default -> grid[y][x];
                     };
 
                     Color color = switch (c) {
-                        case '[', ']',' ', '.' -> Color.LIGHT_GRAY;
+                        case '[', ']',' ', '.','✚' -> Color.LIGHT_GRAY;
                         case '⚙' -> Color.RED;
                         case 'S', 'E' -> Color.GREEN;
                         case 'v', '^', '>', '<' -> Color.WHITE;

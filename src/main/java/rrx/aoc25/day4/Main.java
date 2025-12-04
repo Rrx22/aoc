@@ -7,10 +7,7 @@ class Main {
     static void main() {
         var x = FileUtil.readToGrid("25/d04p1");
 
-        Something y = new Something(x);
-        ChristmasAssert.test(y.doSomething(), 0L);
-
-        y.changeItUp();
-        ChristmasAssert.test(y.doSomething(), 0L);
+        PrintingDepartment y = new PrintingDepartment(x);
+        ChristmasAssert.test(y.clearOutRolls(), 8972L);
     }
 }
