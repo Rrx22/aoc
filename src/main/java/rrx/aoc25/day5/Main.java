@@ -5,12 +5,12 @@ import rrx.ChristmasAssert;
 
 class Main {
     static void main() {
-        var x = FileUtil.readToGrid("25/d05p1");
+        var input = FileUtil.readFile("25/d05p1");
 
-        Something y = new Something(x);
-        ChristmasAssert.test(y.doSomething(), 0L);
+        KitchenInventoryMS kitchenInvMs = new KitchenInventoryMS(input);
+        ChristmasAssert.test(kitchenInvMs.doInventoryManagement(), 679L);
 
-        y.changeItUp();
-        ChristmasAssert.test(y.doSomething(), 0L);
+        kitchenInvMs.documentAllValidIDs();
+        ChristmasAssert.test(kitchenInvMs.doInventoryManagement(), 358155203664116L);
     }
 }
