@@ -20,7 +20,7 @@ public class PrintingDepartment implements Visualisable {
 
     public long clearOutRolls() {
         long rollsClearedOut = 0L;
-        repaint(20000);
+        repaint(2000);
 
         long rollsThatCanBeCleared = countAccessibleRolls();
         while (rollsThatCanBeCleared > 0) {
