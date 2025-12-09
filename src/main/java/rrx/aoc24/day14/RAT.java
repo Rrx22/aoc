@@ -2,9 +2,8 @@ package rrx.aoc24.day14;
 
 import rrx.ChristmasException;
 import rrx.utils.PrintUtil;
-import rrx.visualizer.constant.Visualisable;
+import rrx.visualizer.constant.VisualisableImpl;
 
-import javax.swing.JPanel;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +14,8 @@ import java.util.regex.Pattern;
 /**
  * Robot Avoidance Tool
  */
-public class RAT implements Visualisable {
+public class RAT extends VisualisableImpl {
 
-
-    private JPanel gridPanel;
     private char[][] grid;
     private boolean isEasterEggFound = false;
     private List<Robot> robots;
@@ -41,7 +38,7 @@ public class RAT implements Visualisable {
     private void updateGrid() {
         Map<String, Character> robotLocations = new HashMap<>();
         for (Robot robot : robots) {
-            robotLocations.compute(robot.currLoc(), (_, v) -> v == null ? '1' :  (char) (v + 1));
+            robotLocations.compute(robot.currLoc(), (_, v) -> v == null ? '1' : (char) (v + 1));
         }
 
         for (var entry : robotLocations.entrySet()) {
@@ -51,11 +48,8 @@ public class RAT implements Visualisable {
             grid[coords[1]][coords[0]] = entry.getValue();
         }
         identifyEasterEgg();
-        if (gridPanel == null) {
-            PrintUtil.grid(grid);
-        } else {
-            repaint(2);
-        }
+        repaint(2);
+//        PrintUtil.grid(grid);
     }
 
     private void identifyEasterEgg() {
@@ -171,18 +165,8 @@ public class RAT implements Visualisable {
     }
 
     @Override
-    public JPanel getGridPanel() {
-        return gridPanel;
-    }
-
-    @Override
     public void executeTask() {
         moveRobots(Long.MAX_VALUE);
-    }
-
-    @Override
-    public void setGridPanel(JPanel gridPanel) {
-        this.gridPanel = gridPanel;
     }
 
     record Robot(int[] p, int vx, int vy) {

@@ -3,17 +3,15 @@ package rrx.aoc24.day6;
 import rrx.ChristmasException;
 import rrx.utils.Direction;
 import rrx.utils.GridUtil;
-import rrx.visualizer.constant.Visualisable;
+import rrx.visualizer.constant.VisualisableImpl;
 
-import javax.swing.JPanel;
 import java.util.HashSet;
 import java.util.Set;
 
-public class StealthProcessor implements Visualisable {
+public class StealthProcessor extends VisualisableImpl {
 
     private final char[][] grid;
     private final char[][] printGrid;
-    private JPanel gridPanel;
     private final Guard guard = new Guard();
     private final int[] startPos;
 
@@ -100,13 +98,10 @@ public class StealthProcessor implements Visualisable {
         return false;
     }
 
-    private void show(char[][] grid, Guard guard)  {
-        if (gridPanel == null) {
-//            PrintUtil.gridZoom(grid, guard.x, guard.y);
-        } else {
-            System.arraycopy(grid, 0, printGrid, 0, grid.length);
-            repaint(2);
-        }
+    private void show(char[][] grid, Guard guard) {
+//        PrintUtil.gridZoom(grid, guard.x, guard.y);
+        System.arraycopy(grid, 0, printGrid, 0, grid.length);
+        repaint(2);
     }
 
     private char moveGuard(char[][] currGrid, Guard currGuard) {
@@ -123,18 +118,8 @@ public class StealthProcessor implements Visualisable {
     }
 
     @Override
-    public JPanel getGridPanel() {
-        return gridPanel;
-    }
-
-    @Override
     public void executeTask() {
         makeGuardsLifeHell();
-    }
-
-    @Override
-    public void setGridPanel(JPanel gridPanel) {
-        this.gridPanel = gridPanel;
     }
 
     @Override

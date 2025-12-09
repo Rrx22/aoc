@@ -2,14 +2,12 @@ package rrx.aoc24.day15;
 
 import rrx.ChristmasException;
 import rrx.utils.Direction;
-import rrx.utils.PrintUtil;
-import rrx.visualizer.constant.Visualisable;
+import rrx.visualizer.constant.VisualisableImpl;
 
-import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnlargedWarehouseManager implements Visualisable {
+public class EnlargedWarehouseManager extends VisualisableImpl {
 
     private final char[][] grid;
     private final List<Direction> directions = new ArrayList<>();
@@ -17,7 +15,6 @@ public class EnlargedWarehouseManager implements Visualisable {
     private final List<Wall> walls = new ArrayList<>();
     private final List<Box> boxes = new ArrayList<>();
     private final Robot robot;
-    private JPanel gridPanel;
 
     public EnlargedWarehouseManager(List<String> input) {
         int split = input.indexOf("");
@@ -79,21 +76,8 @@ public class EnlargedWarehouseManager implements Visualisable {
                 grid[i][j] = c;
             }
         }
-        if (gridPanel != null) {
-            repaint(5);
-        } else {
-            PrintUtil.gridZoom(grid, robot.coords[0], robot.coords[1]);
-        }
-    }
-
-    @Override
-    public void setGridPanel(JPanel gridPanel) {
-        this.gridPanel = gridPanel;
-    }
-
-    @Override
-    public JPanel getGridPanel() {
-        return gridPanel;
+        repaint(5);
+//        PrintUtil.gridZoom(grid, robot.coords[0], robot.coords[1]);
     }
 
     @Override

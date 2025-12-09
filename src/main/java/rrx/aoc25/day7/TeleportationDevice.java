@@ -1,18 +1,16 @@
 package rrx.aoc25.day7;
 
 import rrx.utils.Direction;
-import rrx.visualizer.constant.Visualisable;
+import rrx.visualizer.constant.VisualisableImpl;
 
-import javax.swing.JPanel;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TeleportationDevice implements Visualisable {
+public class TeleportationDevice extends VisualisableImpl {
 
-    private JPanel gridPanel;
     private final char[][] grid;
 
     public TeleportationDevice(char[][] grid) {
@@ -109,16 +107,6 @@ public class TeleportationDevice implements Visualisable {
     @Override
     public char[][] getGrid() {
         return grid;
-    }
-
-    @Override
-    public void setGridPanel(JPanel gridPanel) {
-        this.gridPanel = gridPanel;
-    }
-
-    @Override
-    public JPanel getGridPanel() {
-        return gridPanel;
     }
 
     @Override

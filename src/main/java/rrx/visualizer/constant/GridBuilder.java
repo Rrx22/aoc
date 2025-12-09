@@ -48,7 +48,7 @@ public class GridBuilder extends JFrame {
         repaint();
     }
 
-    public void start(Visualisable visualisable) {
+    public void start(VisualisableImpl visualisable) {
         try {
             visualisable.setGridPanel(gridPanel);
             var worker = new Worker(visualisable);

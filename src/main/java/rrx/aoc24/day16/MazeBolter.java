@@ -3,9 +3,8 @@ package rrx.aoc24.day16;
 import rrx.ChristmasException;
 import rrx.utils.Direction;
 import rrx.utils.GridUtil;
-import rrx.visualizer.constant.Visualisable;
+import rrx.visualizer.constant.VisualisableImpl;
 
-import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,11 +21,10 @@ import static rrx.utils.Direction.LEFT;
 import static rrx.utils.Direction.RIGHT;
 import static rrx.utils.Direction.UP;
 
-public class MazeBolter implements Visualisable {
+public class MazeBolter extends VisualisableImpl {
 
     private final char[][] maze;
     private final char[][] printMaze;
-    private JPanel gridPanel;
 
     public MazeBolter(char[][] maze) {
         this.maze = maze;
@@ -152,9 +150,6 @@ public class MazeBolter implements Visualisable {
     }
 
     private void updateGrid(boolean[][][] visited, int startX, int startY) {
-        if (gridPanel == null) {
-            return;
-        }
         System.arraycopy(maze, 0, printMaze, 0, maze.length);
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
@@ -193,16 +188,6 @@ public class MazeBolter implements Visualisable {
     @Override
     public char[][] getGrid() {
         return printMaze;
-    }
-
-    @Override
-    public void setGridPanel(JPanel gridPanel) {
-        this.gridPanel = gridPanel;
-    }
-
-    @Override
-    public JPanel getGridPanel() {
-        return gridPanel;
     }
 
     @Override

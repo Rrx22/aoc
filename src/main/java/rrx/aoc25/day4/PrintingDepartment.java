@@ -2,16 +2,14 @@ package rrx.aoc25.day4;
 
 import rrx.utils.Direction;
 import rrx.utils.Pair;
-import rrx.visualizer.constant.Visualisable;
+import rrx.visualizer.constant.VisualisableImpl;
 
-import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintingDepartment implements Visualisable {
+public class PrintingDepartment extends VisualisableImpl {
 
     private final char[][] grid;
-    private JPanel gridPanel;
     private List<Pair<Integer, Integer>> clearCoordList;
 
     public PrintingDepartment(char[][] grid) {
@@ -69,16 +67,6 @@ public class PrintingDepartment implements Visualisable {
     @Override
     public char[][] getGrid() {
         return grid;
-    }
-
-    @Override
-    public void setGridPanel(JPanel gridPanel) {
-        this.gridPanel = gridPanel;
-    }
-
-    @Override
-    public JPanel getGridPanel() {
-        return gridPanel;
     }
 
     @Override
