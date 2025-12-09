@@ -25,7 +25,7 @@ public class TeleportationDevice implements Visualisable {
         for (int y = 0; y < grid.length; y++) {
             for (int x = 0; x < grid[0].length; x++) {
                 if (grid[y][x] == 'S') {
-                    tachyonBeams.add(new Coord(y, x));
+                    tachyonBeams.add(new Coord(x, y));
                     break;
                 }
             }
@@ -52,8 +52,8 @@ public class TeleportationDevice implements Visualisable {
             if (nextChar != '^') {
                 continue; // either hit the bottom OR an already seen split
             }
-            Coord left = new Coord(tb.y + i, tb.x - 1);
-            Coord right = new Coord(tb.y + i, tb.x + 1);
+            Coord left = new Coord(tb.x - 1, tb.y + i);
+            Coord right = new Coord(tb.x + 1, tb.y + i);
             if (left.x >= 0) {
                 tachyonBeams.add(left);
             }
@@ -77,7 +77,7 @@ public class TeleportationDevice implements Visualisable {
                 } else if (curr == '.') {
                     continue;
                 }
-                Coord currCoord = new Coord(y, x);
+                Coord currCoord = new Coord(x, y);
                 long currOptions = 0L;
 
                 for (Direction direction : List.of(Direction.LEFT, Direction.RIGHT)) {
@@ -89,7 +89,7 @@ public class TeleportationDevice implements Visualisable {
                         lrChar = grid[y + i][x + direction.x];
                     } while (lrChar != '^');
                     if (lrChar == '^') {
-                        Coord nextHitSplit = new Coord(y + i, x + direction.x);
+                        Coord nextHitSplit = new Coord(x + direction.x, y + i);
                         currOptions += foundOptions.get(nextHitSplit);
                     } else {
                         currOptions += 1L; // hits the bottom of the grid, so only 1 outcome
@@ -126,6 +126,6 @@ public class TeleportationDevice implements Visualisable {
         this.fixTachyonManifolds();
     }
 
-    private record Coord(int y, int x) {
+    private record Coord(int x, int y) {
     }
 }
