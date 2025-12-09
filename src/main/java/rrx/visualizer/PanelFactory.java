@@ -35,6 +35,9 @@ public class PanelFactory {
             for (int y = 0; y < gb.maxY; y++) {
                 for (int x = 0; x < gb.maxX; x++) {
                     // Draw cell background
+                    // TODO make c + color specific for each VisualisableImpl
+                    //  maybe by adding another two functions to the Visualisable interface
+                    //   - with a default impl!
                     char c = switch (grid[y][x]) {
                         case '.' -> ' ';
                         case '#', '@' -> '■';
