@@ -5,12 +5,11 @@ import rrx.ChristmasAssert;
 
 class Main {
     static void main() {
-        var grid = FileUtil.readToGrid("25/d07p1");
 
-        TeleportationDevice teleportationDevice = new TeleportationDevice(grid);
-//        ChristmasAssert.test(teleportationDevice.fixTachyonManifolds(), 21L);
+        TeleportationDevice teleportationDevice = new TeleportationDevice(FileUtil.readToGrid("25/d07p1"));
         ChristmasAssert.test(teleportationDevice.fixTachyonManifolds(), 1658L);
 
-//        ChristmasAssert.test(teleportationDevice.fixQuantumTachyonManifolds(), 0L);
+        teleportationDevice = new TeleportationDevice(FileUtil.readToGrid("25/d07p1"));
+        ChristmasAssert.test(teleportationDevice.fixQuantumTachyonManifolds(), 53916299384254L);
     }
 }

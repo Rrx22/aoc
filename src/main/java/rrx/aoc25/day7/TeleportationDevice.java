@@ -7,6 +7,8 @@ import rrx.visualizer.constant.Visualisable;
 import javax.swing.JPanel;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TeleportationDevice implements Visualisable {
 
@@ -14,7 +16,7 @@ public class TeleportationDevice implements Visualisable {
     private final char[][] grid;
     private Coord startCoord;
 
-    Boolean useGridUI = true;
+    Boolean useGridUI = null;
 
     public TeleportationDevice(char[][] grid) {
         this.grid = grid;
@@ -41,7 +43,6 @@ public class TeleportationDevice implements Visualisable {
 
         while (!tachyonBeams.isEmpty()) {
             var tb = tachyonBeams.pop();
-//            System.out.println("🎅🎅🎅 NEXT 🎅🎅🎅 " + tb);
             if (grid[tb.y][tb.x] == '.') {
                 grid[tb.y][tb.x] = '|';
             }
@@ -76,11 +77,76 @@ public class TeleportationDevice implements Visualisable {
                 Coord right = new Coord(tb.y + i, tb.x + 1);
                 tachyonBeams.push(right);
             }
-//            System.out.println(tachyonBeams.size());
-//            tachyonBeams.forEach(System.out::println);
         }
 
         return splitCounter;
+    }
+
+    public long fixQuantumTachyonManifolds() {
+        long result = 0L;
+
+        Map<Coord, Long> foundOptions = new HashMap<>();
+        for (int y = grid.length - 1; y >= 0; y--) {
+            for (int x = 0; x < grid[0].length; x++) {
+                char curr = grid[y][x];
+                if (curr == 'S') {
+                    break;
+                } else if (curr == '.') {
+                    continue;
+                }
+                Coord currCoord = new Coord(y, x);
+                long options = 0L;
+                boolean outOfBounds = false;
+                //go left
+                int i = 0;
+                char leftChar;
+                do {
+                    i++;
+                    if (y + i >= grid.length) {
+                        outOfBounds = true;
+                        break;
+                    }
+                    leftChar = grid[y + i][x - 1];
+                } while (leftChar != '^');
+                if (outOfBounds) {
+                    options += 1L;
+                } else {
+                    Long val = foundOptions.get(new Coord(y + i, x - 1));
+                    if (val == null) {
+                        throw new ChristmasException(String.format("No value found for coords: %d-%d\n", y + i, x - 1));
+                    }
+                    options += val;
+                }
+                //go right
+                i = 0;
+                outOfBounds = false;
+                char rightChar;
+                do {
+                    i++;
+                    if (y + i >= grid.length) {
+                        outOfBounds = true;
+                        break;
+                    }
+                    rightChar = grid[y + i][x + 1];
+                } while (rightChar != '^');
+                if (outOfBounds) {
+                    options += 1L;
+                } else {
+                    Long val = foundOptions.get(new Coord(y + i, x + 1));
+                    if (val == null) {
+                        throw new ChristmasException(String.format("No value found for coords: %d-%d\n", y + i, x + 1));
+                    }
+                    options += val;
+                }
+                foundOptions.put(currCoord, options);
+                result = options;
+//                System.out.printf("%2d-%2d => %2d options\n", y, x, options);
+                // end of x loop
+            }
+//            System.out.println("🎅🎅🎅 next row 🎅🎅🎅");
+            // end of y loop
+        }
+        return result;
     }
 
     private void draw() {
