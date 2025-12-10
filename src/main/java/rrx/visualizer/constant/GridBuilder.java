@@ -1,7 +1,6 @@
 package rrx.visualizer.constant;
 
 import rrx.ChristmasException;
-import rrx.visualizer.PanelFactory;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,23 +18,23 @@ public class GridBuilder extends JFrame {
     public final char[][] grid;
     private JPanel gridPanel;
 
-    public GridBuilder(char[][] grid) {
+    public GridBuilder(VisualisableImpl visualisable) {
         super("Grid Builder");
 
-        this.grid = grid;
-        this.maxY = grid.length;
-        this.maxX = grid[0].length;
+        this.grid = visualisable.getGrid();
+        this.maxY = this.grid.length;
+        this.maxX = this.grid[0].length;
 
         setSize(BORDER * 2 + TILE_SIZE * (maxX + 5), BORDER * 2 + TILE_SIZE * (maxY + 10));
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        createGui();
+        createGui(visualisable);
         setVisible(true);
     }
 
-    public void createGui() {
-        var factory = new PanelFactory(this);
+    public void createGui(VisualisableImpl visualisable) {
+        var factory = new PanelFactory(this, visualisable);
         setLayout(new BorderLayout());
         gridPanel = factory.constructGrid();
         JPanel wrapperPanel = new JPanel(new BorderLayout());

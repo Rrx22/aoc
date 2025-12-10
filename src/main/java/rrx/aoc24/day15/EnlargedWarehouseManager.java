@@ -4,6 +4,7 @@ import rrx.ChristmasException;
 import rrx.utils.Direction;
 import rrx.visualizer.constant.VisualisableImpl;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +89,18 @@ public class EnlargedWarehouseManager extends VisualisableImpl {
     @Override
     public char[][] getGrid() {
         return grid;
+    }
+
+    @Override
+    public char paintCharacter(char c) {
+        if (c == '@') return '⚙';
+        return super.paintCharacter(c);
+    }
+
+    @Override
+    public Color paintColor(char c) {
+        if (c == '@') return Color.RED;
+        return super.paintColor(c);
     }
 
     record Robot(char c, int[] coords) {

@@ -1,6 +1,4 @@
-package rrx.visualizer;
-
-import rrx.visualizer.constant.GridBuilder;
+package rrx.visualizer.constant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,20 +7,24 @@ import static rrx.visualizer.constant.GridBuilder.TILE_SIZE;
 
 public class PanelFactory {
     private final GridBuilder gb;
+    private final Visualisable visualisable;
 
-    public PanelFactory(GridBuilder gb) {
+    public PanelFactory(GridBuilder gb, VisualisableImpl visualisable) {
         this.gb = gb;
+        this.visualisable = visualisable;
     }
 
     public JPanel constructGrid() {
-        return new GridPanel(gb);
+        return new GridPanel(gb, visualisable);
     }
 
     private static class GridPanel extends JPanel {
         private final GridBuilder gb;
+        private final Visualisable visualisable;
 
-        public GridPanel(GridBuilder gb) {
+        public GridPanel(GridBuilder gb, Visualisable visualisable) {
             this.gb = gb;
+            this.visualisable = visualisable;
             setPreferredSize(new Dimension(gb.maxX * TILE_SIZE, gb.maxY * TILE_SIZE));
             setBackground(Color.BLACK);
         }
@@ -34,30 +36,9 @@ public class PanelFactory {
 
             for (int y = 0; y < gb.maxY; y++) {
                 for (int x = 0; x < gb.maxX; x++) {
-                    // Draw cell background
-                    // TODO make c + color specific for each VisualisableImpl
-                    //  maybe by adding another two functions to the Visualisable interface
-                    //   - with a default impl!
-                    char c = switch (grid[y][x]) {
-                        case '.' -> ' ';
-                        case '#', '@' -> '■';
-                        case '1', '2', '3', '4', '5', '6', '7', '8', '9' -> '*';
-                        case '+' -> '✚';
-                        case '-' -> '─';
-                        case '|' -> '│';
-                        case 'O', '0' -> '⚪';
-                        default -> grid[y][x];
-                    };
-
-                    Color color = switch (c) {
-                        case '[', ']',' ', '.','✚' -> Color.LIGHT_GRAY;
-                        case 'S', '⚙' -> Color.RED;
-                        case 'E', '^' -> Color.GREEN;
-                        case 'v', '>', '<' -> Color.WHITE;
-                        case '#', '■' -> Color.DARK_GRAY;
-                        default -> Color.ORANGE;
-                    };
                     // Draw character
+                    char c = this.visualisable.paintCharacter(grid[y][x]);
+                    Color color = this.visualisable.paintColor(grid[y][x]);
                     g.setColor(color);
                     g.setFont(new Font("Monospaced", Font.BOLD, 14));
 

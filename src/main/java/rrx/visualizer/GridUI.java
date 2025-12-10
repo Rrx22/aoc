@@ -19,19 +19,19 @@ public class GridUI {
 
     static void main() {
         SwingUtilities.invokeLater(() -> {
-            VisualisableImpl visualisable = AOC2024.day15();
-            GridBuilder gridBuilder = new GridBuilder(visualisable.getGrid());
+            VisualisableImpl visualisable = AOC2025.day7();
+            GridBuilder gridBuilder = new GridBuilder(visualisable);
             gridBuilder.start(visualisable);
         });
     }
 
     private static final class AOC2025 {
-        private static VisualisableImpl day4() {
-            return new PrintingDepartment(FileUtil.readToGrid("25/d04p1"));
-        }
-
         private static VisualisableImpl day7() {
             return new TeleportationDevice(FileUtil.readToGrid("25/d07p1"));
+        }
+
+        private static VisualisableImpl day4() {
+            return new PrintingDepartment(FileUtil.readToGrid("25/d04p1"));
         }
     }
 

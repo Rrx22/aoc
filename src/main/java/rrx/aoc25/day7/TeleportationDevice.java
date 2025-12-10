@@ -3,6 +3,7 @@ package rrx.aoc25.day7;
 import rrx.utils.Direction;
 import rrx.visualizer.constant.VisualisableImpl;
 
+import java.awt.Color;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
@@ -112,6 +113,15 @@ public class TeleportationDevice extends VisualisableImpl {
     @Override
     public void executeTask() {
         this.fixTachyonManifolds();
+    }
+
+    @Override
+    public Color paintColor(char c) {
+        return switch (c) {
+            case 'S' -> Color.RED;
+            case '^' -> Color.GREEN;
+            default -> super.paintColor(c);
+        };
     }
 
     private record Coord(int x, int y) {
