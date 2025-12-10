@@ -9,14 +9,13 @@ public class GridUtil {
     }
 
     public static boolean isWithinBounds(int x, int y, Object grid) {
-        if (grid instanceof char[][] arr) {
-            return isWithinBounds(x, y, arr.length, arr[0].length);
-        }
-        if (grid instanceof int[][] arr) {
-            return isWithinBounds(x, y, arr.length, arr[0].length);
-        }
-        throw new ChristmasException("Go implement this unsupported array type!! ");
+        return switch (grid) {
+            case char[][] arr -> isWithinBounds(x, y, arr.length, arr[0].length);
+            case int[][] arr -> isWithinBounds(x, y, arr.length, arr[0].length);
+            default -> throw new ChristmasException("Go implement this unsupported array type! 🎅 " + grid.getClass().getSimpleName());
+        };
     }
+
     private static boolean isWithinBounds(int x, int y, int xLen, int yLen) {
         return x >= 0 && x < xLen && y >= 0 && y < yLen;
     }
