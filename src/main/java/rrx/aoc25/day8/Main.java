@@ -5,12 +5,12 @@ import rrx.ChristmasAssert;
 
 class Main {
     static void main() {
-        var x = FileUtil.readToGrid("25/d08p1");
+        var x = FileUtil.readFile("25/d08p1");
 
-        Something y = new Something(x);
-        ChristmasAssert.test(y.doSomething(), 0L);
+        XmasLighting y = new XmasLighting(x);
+        ChristmasAssert.test(y.hangTheLights(), 181584L);
 
-        y.changeItUp();
-        ChristmasAssert.test(y.doSomething(), 0L);
+        y.tryHarder();
+        ChristmasAssert.test(y.hangTheLights(), 8465902405L);
     }
 }
