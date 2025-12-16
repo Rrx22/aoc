@@ -5,12 +5,11 @@ import rrx.ChristmasAssert;
 
 class Main {
     static void main() {
-        var x = FileUtil.readToGrid("25/d09p1");
+        var input = FileUtil.readFile("25/d09p1");
 
-        Something y = new Something(x);
-        ChristmasAssert.test(y.doSomething(), 0L);
+        MovieTheater y = new MovieTheater(input);
+        ChristmasAssert.test(y.findLargestRedTileRectangle(), 4733727792L);
 
-        y.changeItUp();
-        ChristmasAssert.test(y.doSomething(), 0L);
+//        ChristmasAssert.test(y.doSomething(), 0L);
     }
 }
